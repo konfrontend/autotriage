@@ -10,7 +10,7 @@ We chose the project over `${CLAUDE_PLUGIN_DATA}` or a fixed home directory beca
 
 Two consequences follow from installing through a marketplace:
 
-- **The runtime dependencies are vendored.** An installed plugin runs from Claude Code's plugin cache, where no `npm install` has run. `ajv` and `yaml` are bundled into the committed `scripts/vendor/deps.mjs` with `npm run vendor`; npm is needed only to develop the plugin.
+- **The runtime dependencies are vendored.** An installed plugin runs from Claude Code's plugin cache. Claude Code 2.1 was seen running `npm install` there on install, but that step is undocumented, so the plugin does not rely on it. `ajv` and `yaml` are bundled into the committed `scripts/vendor/deps.mjs` with `npm run vendor`; npm is needed only to develop the plugin.
 - **The permission rules live in the project.** A plugin cannot ship `permissions.allow` rules. `setup` offers to merge the script and `data/**` rules into the project's `.claude/settings.json`.
 
 ## Considered options
