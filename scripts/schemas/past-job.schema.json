@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "data/profile/jobs/<slug>.md frontmatter (ticket 05)",
+  "type": "object",
+  "required": ["slug", "public_name", "naming", "role", "stack", "period"],
+  "additionalProperties": false,
+  "properties": {
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "public_name": { "type": "string", "minLength": 1 },
+    "naming": { "enum": ["public", "first-name-only", "nda"] },
+    "url": { "type": "string" },
+    "role": { "type": "string", "minLength": 1 },
+    "stack": { "type": "array", "items": { "type": "string" } },
+    "period": { "type": "string", "minLength": 1 },
+    "scale": { "type": "string" },
+    "domain": { "type": "string" },
+    "outcome": { "type": "string" }
+  }
+}

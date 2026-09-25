@@ -1,0 +1,14 @@
+{
+  "name": "konfrontend",
+  "owner": { "name": "Konstantin Dolbilov", "url": "https://github.com/konfrontend" },
+  "description": "Konstantin Dolbilov's Claude Code plugins.",
+  "plugins": [
+    {
+      "name": "autotriage",
+      "source": "./",
+      "description": "Freelance job posting in, triage Verdict and pasteable proposal Letter out.",
+      "category": "productivity",
+      "keywords": ["freelance", "upwork", "proposal", "triage"]
+    }
+  ]
+}

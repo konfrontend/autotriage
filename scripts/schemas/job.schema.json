@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "job.md frontmatter (catalogue/candidate-artifacts.md)",
+  "type": "object",
+  "required": ["slug", "title", "date", "timezone", "budget"],
+  "additionalProperties": false,
+  "properties": {
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "title": { "type": "string", "minLength": 1 },
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "timezone": { "type": "string", "pattern": "^[A-Za-z]+(/[A-Za-z_+-]+)+$|^UTC$" },
+    "budget": {
+      "type": "object",
+      "required": ["type"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "enum": ["hourly", "fixed", "none"] },
+        "min": { "type": "number", "minimum": 0 },
+        "max": { "type": "number", "minimum": 0 }
+      },
+      "allOf": [
+        { "if": { "properties": { "type": { "const": "hourly" } } }, "then": { "required": ["min", "max"] } },
+        { "if": { "properties": { "type": { "const": "fixed" } } }, "then": { "required": ["max"], "not": { "required": ["min"] } } },
+        { "if": { "properties": { "type": { "const": "none" } } }, "then": { "not": { "anyOf": [{ "required": ["min"] }, { "required": ["max"] }] } } }
+      ]
+    },
+    "extras": { "type": "object" },
+    "verdict": {
+      "type": "object",
+      "required": ["family", "family_runner_up", "flags", "skill_fit", "interest_fit", "value", "alert_level", "hard_stops", "verdict", "decision"],
+      "additionalProperties": false,
+      "properties": {
+        "family": { "enum": ["audit", "fix", "build", "maintenance", null] },
+        "family_runner_up": { "enum": ["audit", "fix", "build", "maintenance", null] },
+        "flags": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9-]+$" }, "uniqueItems": true },
+        "skill_fit": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "interest_fit": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "value": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "alert_level": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "hard_stops": { "type": "array", "items": { "enum": ["alert-level-5", "level-5-flag", "rate-below-floor", "refused-stack", "unmet-constraint"] } },
+        "verdict": { "enum": ["go", "no-go", "ask"] },
+        "decision": { "enum": ["go", "no-go", null] }
+      }
+    }
+  }
+}

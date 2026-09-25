@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "data/profile/voice.md frontmatter (ticket 07). Owns every Letter-facing personal string: greeting and sign-off live here, not in profile.md.",
+  "type": "object",
+  "required": ["language", "greeting", "sign_off"],
+  "additionalProperties": false,
+  "properties": {
+    "language": { "enum": ["en-US", "en-GB"], "default": "en-US" },
+    "greeting": { "type": "string", "minLength": 1, "default": "Hi," },
+    "sign_off": { "type": "string", "minLength": 1 },
+    "banned_extra": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "allowed_extra": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "cite_role_period": { "type": "boolean", "default": true }
+  }
+}

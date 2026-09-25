@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "data/profile/profile.md frontmatter. Facts only; Skills live in skills.md (the ledger, ADR 0003), Letter-facing strings (greeting, sign-off) in voice.md. Defaults are the catalogue prefills the setup wizard offers.",
+  "type": "object",
+  "required": ["identity", "refused_stacks", "family_precedence", "word_cap", "terms"],
+  "additionalProperties": false,
+  "properties": {
+    "identity": {
+      "type": "object",
+      "required": ["name", "timezone", "constraints"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "location": { "type": "string" },
+        "timezone": { "type": "string", "pattern": "^[A-Za-z]+(/[A-Za-z_+-]+)+$|^UTC$" },
+        "constraints": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "refused_stacks": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "niche": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "interests": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "avoid": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "family_precedence": {
+      "type": "array",
+      "items": { "enum": ["audit", "fix", "build", "maintenance"] },
+      "minItems": 4, "maxItems": 4, "uniqueItems": true,
+      "default": ["audit", "build", "maintenance", "fix"]
+    },
+    "word_cap": { "type": "integer", "minimum": 100, "maximum": 700, "default": 350 },
+    "terms": {
+      "type": "object",
+      "required": ["rate", "rate_floor", "budget_floor", "billing"],
+      "additionalProperties": false,
+      "properties": {
+        "rate": { "type": "number", "minimum": 1 },
+        "rate_floor": { "type": "number", "minimum": 1 },
+        "budget_floor": { "type": "number", "minimum": 0 },
+        "billing": { "enum": ["hourly-caps", "milestones", "both"], "default": "hourly-caps" },
+        "weekly_hours": { "type": "object", "properties": { "min": { "type": "integer" }, "max": { "type": "integer" } } },
+        "availability_from": { "type": "string" },
+        "local_hours": { "type": "string" },
+        "subcontracting": { "enum": ["none", "with-approval", "yes"], "default": "none" },
+        "ip_stance": { "enum": ["assigned-on-payment", "licensed"], "default": "assigned-on-payment" }
+      }
+    }
+  }
+}

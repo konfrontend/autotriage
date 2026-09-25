@@ -1,0 +1,19 @@
+{
+  "name": "autotriage",
+  "private": true,
+  "type": "module",
+  "description": "Claude Code plugin: freelance job posting in, triage Verdict and pasteable proposal Letter out.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test scripts/*.test.mjs",
+    "vendor": "esbuild scripts/vendor/deps.src.mjs --bundle --format=esm --platform=node --target=node20 --legal-comments=eof --banner:js=\"import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);\" --outfile=scripts/vendor/deps.mjs"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "esbuild": "^0.28.2",
+    "yaml": "^2.8.0"
+  }
+}
