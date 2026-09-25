@@ -42,7 +42,7 @@ The model can call these on its own, for example to run the Route step by step w
 | Skill | What it does |
 | --- | --- |
 | `/autotriage:intake` | Records a pasted Job as a Candidate folder `data/candidates/YYYY-MM-DD-<slug>/` with its `job.md`. |
-| `/autotriage:triage <candidate>` | Detects Flags, the Family, and scores; a script computes the Verdict; you answer go or no-go at the checkpoint. It also records the Job's required Skills in the Skill ledger. |
+| `/autotriage:triage <candidate>` | Detects Flags, the Family, and scores; a script computes the Verdict; you answer go or no-go at the checkpoint. Then it shows the Skill ledger changes and records them only when you confirm them, as a separate question. |
 | `/autotriage:proposal <candidate>` | Writes the Letter for a Candidate with decision `go`, from the Family template, the voice rules, and the Profile. |
 | `/autotriage:verify <candidate>` | Reviews the Letter against the Checks and applies the Fixes in place. Ends with the Letter ready to paste. |
 | `/autotriage:skills [print \| print gaps]` | Prints the Skill ledger: Targets (Gaps that Jobs keep asking for), other Gaps, then the rest. A signal only; what you do about a Gap is up to you. |

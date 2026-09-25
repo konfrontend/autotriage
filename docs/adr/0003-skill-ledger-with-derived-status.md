@@ -4,7 +4,7 @@ status: accepted
 
 # Skills live in their own ledger; Targets are derived, never stored
 
-Skills move out of `profile.md` into `data/profile/skills.md`, a YAML list in frontmatter, one row per Skill. Every `triage` run appends the Candidate to the `seen` list of each Skill the Job requires, and adds a row at Level `gap` for a required item the Profile has no row for, after the human confirms the changes at the checkpoint. A Gap becomes a Target when it has been Seen at least `target_after` times; this is derived when printed, and Targets sort first in the print.
+Skills move out of `profile.md` into `data/profile/skills.md`, a YAML list in frontmatter, one row per Skill. Every `triage` run appends the Candidate to the `seen` list of each Skill the Job requires, and adds a row at Level `gap` for a required item the Profile has no row for, only after the human confirms those changes explicitly, as a question separate from go or no-go. A Gap becomes a Target when it has been Seen at least `target_after` times; this is derived when printed, and Targets sort first in the print.
 
 We chose a Markdown file with frontmatter over SQLite because every other artifact in the repo is frontmatter validated by a schema on write, the table holds tens of rows, and a print is a script rendering one list. We chose derived Targets over a stored `status` field because a stored status drifts from `level` and `seen`, and the closing action is already a Profile edit (bump the Level, add evidence). The Level ladder is renamed from `production`, `working`, `learning` to `shipped`, `used`, `learning`, `gap`: the old names did not say what test separates them, and `gap` had no place on the ladder.
 

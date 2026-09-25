@@ -1,6 +1,6 @@
 # Skill ledger
 
-The Profile's Skills live in `data/profile/skills.md`, one row per Skill in the frontmatter (schema `scripts/schemas/skills.schema.json`, ADR 0003). `setup` writes it, `triage` records into it on every run, `/autotriage:skills` prints it. This file is the single place the row contract, the Level tests, the Target rule, and the matching rules live; the skills only sequence them.
+The Profile's Skills live in `data/profile/skills.md`, one row per Skill in the frontmatter (schema `scripts/schemas/skills.schema.json`, ADR 0003). `setup` writes it, `triage` records into it when the human confirms the changes, `/autotriage:skills` prints it. This file is the single place the row contract, the Level tests, the Target rule, and the matching rules live; the skills only sequence them.
 
 Portable across Profiles. The rows are the freelancer's; the rules are not.
 
@@ -20,7 +20,7 @@ skills:
 - `level`: `gap`, `learning`, `used`, `shipped`. Tests below.
 - `evidence`: Past Job slugs (`data/profile/jobs/<slug>.md`) that show the Skill. Required and non-empty at `used` and `shipped`; empty at `learning` and `gap`.
 - `keywords`: lowercase strings a Job may use for the Skill instead of its name (`sql`, `db`, `postgresql`). Free; added by hand when a match was missed.
-- `seen`: Candidate folder names whose Job required the Skill, unique. Appended by `triage`, never edited by hand except to correct a wrong match.
+- `seen`: Candidate folder names whose Job required the Skill, unique. Appended by `triage` only after the human confirms the changes, never edited by hand except to correct a wrong match.
 
 At least one row is `shipped`, or the Profile has nothing a Letter can cite.
 

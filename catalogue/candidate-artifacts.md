@@ -8,7 +8,7 @@ A Candidate is one folder under `data/candidates/`, gitignored. Two files: `job.
 
 ## `job.md`
 
-Written by `intake`; `triage` adds the `verdict` block and, after the checkpoint, records the Candidate in the Skill ledger; the human sets `decision`. Body is the posting verbatim, nothing parsed out, nothing dropped.
+Written by `intake`; `triage` adds the `verdict` block and, after the checkpoint and the human's explicit confirmation of the ledger changes, records the Candidate in the Skill ledger; the human sets `decision`. Body is the posting verbatim, nothing parsed out, nothing dropped.
 
 ```yaml
 slug: clinic-booking-mvp
